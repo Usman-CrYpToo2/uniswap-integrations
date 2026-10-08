@@ -4,9 +4,6 @@
 
 Foundry project integrating with the Uniswap V3 mainnet deployment: single-hop and multi-hop swaps, and concentrated liquidity positions managed through the `NonfungiblePositionManager`.
 
-> [!WARNING]
-> Educational code. Unaudited and not intended for deployment.
-
 ## Contracts
 
 | Contract | Description |

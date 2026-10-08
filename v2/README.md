@@ -2,9 +2,6 @@
 
 Hardhat modules integrating with the Uniswap V2 mainnet deployment: exact-input swaps, liquidity provision, an optimal single-sided zap, and flash swaps.
 
-> [!WARNING]
-> Educational code. Unaudited and not intended for deployment.
-
 ## Modules
 
 | Module | Contract | Description |

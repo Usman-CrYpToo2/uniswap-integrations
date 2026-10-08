@@ -4,9 +4,6 @@
 
 Reference integrations against the Uniswap V2 and V3 mainnet deployments, each with a structured security review.
 
-> [!WARNING]
-> Educational code. Unaudited and not intended for deployment.
-
 ## Packages
 
 | Package | Toolchain | Scope |
@@ -28,6 +25,10 @@ Self-reviews for each package are in [`audits/`](audits):
 ## Acknowledgements
 
 The V3 contracts are adapted from the examples in the [Uniswap V3 developer guides](https://docs.uniswap.org/contracts/v3/guides/). The fixes, tests, and security reviews are original.
+
+## Safety
+
+Not audited by a third party. Provided as is, without warranty.
 
 ## License
 
