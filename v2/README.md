@@ -42,30 +42,6 @@ npx hardhat test --network localhost
 
 Tests resolve the contract at the fixed `contractAddress` declared in each test file. They are scripted walkthroughs that log balances and events and do not assert results.
 
-## Security Review
+## Security
 
-Findings are acknowledged and left unfixed; the V2 modules are retained as a reference.
-
-| ID | Severity | Title | Location |
-|---|---|---|---|
-| V2-C-01 | Critical | Any caller can withdraw all pooled liquidity | `add-liquidity/contracts/AddLiquidity.sol` |
-| V2-H-01 | High | No slippage protection on swaps or liquidity operations | All modules |
-| V2-H-02 | High | Deadline set to `block.timestamp` is always satisfied | All modules |
-| V2-M-01 | Medium | `optimalAmount` ignores token ordering | `optimal-swap-liquidity/contracts/optimalSwap.sol` |
-| V2-L-01 | Low | Pair existence not checked before reading reserves | `optimal-swap-liquidity/contracts/optimalSwap.sol` |
-| V2-L-02 | Low | Unchecked ERC-20 return values | All modules |
-| V2-I-01 | Info | Flash swap fee requires the contract to be pre-funded | `flash-swap/contracts/FlashSwap.sol` |
-
-**V2-C-01.** `Liquidity` holds LP tokens for every depositor in a single balance. `LiquidityRemove` burns the contract's entire LP balance and pays the underlying tokens to the caller. *Recommendation:* track LP shares per depositor, or mint LP tokens directly to the user.
-
-**V2-H-01.** Swaps pass `amountOutMin` of `0` or `1`, and `addLiquidity` and `removeLiquidity` pass minimums of `0` or `1`. Transactions are fully exposed to sandwiching. *Recommendation:* accept caller-supplied minimums.
-
-**V2-H-02.** Every router call uses `block.timestamp` as the deadline, which passes at any execution time. *Recommendation:* accept a caller-supplied deadline.
-
-**V2-M-01.** `optimalAmount` always reads the second reserve. When token A is `token0`, the result is computed against the wrong reserve. `swap` handles ordering correctly. *Recommendation:* select the reserve by comparing against `token0()`.
-
-**V2-L-01.** `optimalSwap.swap` calls `getReserves` on the result of `getPair` without checking for `address(0)`. *Recommendation:* revert when the pair does not exist.
-
-**V2-L-02.** Return values of `transfer` and `transferFrom` are ignored in most paths. *Recommendation:* use `SafeERC20`.
-
-**V2-I-01.** The callback pays the fee from the contract's own balance, so it reverts unless the contract is funded beforehand.
+A self-review found 7 issues, including one critical. They are acknowledged and left unfixed, as the modules are kept as a reference. See [`audits/2026-10-v2-self-review.md`](../audits/2026-10-v2-self-review.md).

@@ -9,17 +9,21 @@ Reference integrations against the Uniswap V2 and V3 mainnet deployments, each w
 
 ## Packages
 
-| Package | Toolchain | Scope | Security review |
-|---|---|---|---|
-| [`v2/`](v2) | Hardhat | Swaps, liquidity provision, optimal single-sided zap, flash swaps | 7 findings, acknowledged |
-| [`v3/`](v3) | Foundry, solc 0.7.6 | Single-hop and multi-hop swaps, concentrated liquidity position management | 8 findings: 5 fixed, 3 acknowledged |
+| Package | Toolchain | Scope |
+|---|---|---|
+| [`v2/`](v2) | Hardhat | Swaps, liquidity provision, optimal single-sided zap, flash swaps |
+| [`v3/`](v3) | Foundry, solc 0.7.6 | Single-hop and multi-hop swaps, concentrated liquidity position management |
 
-Each package has its own README covering design notes, usage, and findings.
+Each package has its own README covering design notes and usage.
 
-## Highlights
+## Security
 
-- **V3-C-01 (Critical, fixed).** Unauthenticated `onERC721Received` allowed any caller to take over and drain a custodied position. The same pattern appears in the Uniswap V3 documentation example the contract is based on. See [`v3/`](v3#security-review).
-- **V2-C-01 (Critical, acknowledged).** LP tokens pooled in a single balance allow any caller to withdraw all deposited liquidity. See [`v2/`](v2#security-review).
+Self-reviews for each package are in [`audits/`](audits):
+
+| Package | Review | Findings |
+|---|---|---|
+| V2 | [`2026-10-v2-self-review.md`](audits/2026-10-v2-self-review.md) | 7, acknowledged |
+| V3 | [`2026-10-v3-self-review.md`](audits/2026-10-v3-self-review.md) | 8: 5 fixed, 3 acknowledged |
 
 ## Acknowledgements
 
