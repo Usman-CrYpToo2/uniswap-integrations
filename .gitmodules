@@ -1,0 +1,12 @@
+[submodule "v3/lib/forge-std"]
+	path = v3/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "v3/lib/openzeppelin-contracts"]
+	path = v3/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "v3/lib/v3-core"]
+	path = v3/lib/v3-core
+	url = https://github.com/Uniswap/v3-core
+[submodule "v3/lib/v3-periphery"]
+	path = v3/lib/v3-periphery
+	url = https://github.com/Uniswap/v3-periphery

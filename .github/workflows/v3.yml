@@ -1,0 +1,33 @@
+name: v3
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  v3:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: v3
+    env:
+      # Fork tests need an archive RPC. Add MAINNET_RPC_URL as a repository secret to enable them.
+      MAINNET_RPC_URL: ${{ secrets.MAINNET_RPC_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Check formatting
+        run: forge fmt --check src test
+
+      - name: Build
+        run: forge build
+
+      - name: Fork tests
+        if: env.MAINNET_RPC_URL != ''
+        run: forge test -vvv

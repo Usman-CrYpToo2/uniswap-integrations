@@ -6,3 +6,4 @@ coverage.json
 typechain/
 typechain-types/
 .env
+out/
