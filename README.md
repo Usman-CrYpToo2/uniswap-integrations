@@ -85,3 +85,7 @@ A safer version would take `minAmountOut` and `deadline` from the caller, use Op
 ## Tech
 
 Solidity, Hardhat, ethers.js v6, mainnet forking.
+
+## License
+
+GPL-3.0, see [LICENSE](LICENSE). Some files are MIT, as marked in their SPDX headers.
